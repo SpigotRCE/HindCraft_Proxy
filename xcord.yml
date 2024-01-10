@@ -1,0 +1,260 @@
+# Learn about proper configuration setup through the official XCord discord
+# In the 'xcord-config-help' channel
+# Maximizing XCord's full potential will require some configuration since all servers are a bit different
+compatibility:
+#Use this if you have TCPShield/ComsicGuard/Similar that deliver a real player's IP layer on in the login process
+  skip-initial-connection-checks: false
+  payload-channel-limit: 128
+#Spoof the internal name to Waterfall instead of XCord. Might solve plugin compatibility issues
+  appear-as-waterfall: false
+  always-fire-quit-event: true
+  support-ipv6: false
+log-filter:
+  enabled: false
+  filtered:
+  - BotHandler
+  - ping
+  - ServerConnector
+  - DownstreamBridge
+anti-bot:
+  alerting:
+    print-stats-to-console: true
+#What should be tracked? Valid types: [CONNECTION_RATE, BLACKLISTS, TRACKING_IPS, CPU]
+    tracked-metrics:
+    - CONNECTION_RATE
+    - CPU
+    - BLACKLISTS
+    - TRACKING_IPS
+    discord-webhook-alerts: false
+    publish-attack-stats-to-web: true
+    webhook-botattack-start-file: xcord_webhook_attackstart.json
+    webhook-botattack-end-file: xcord_webhook_attackend.json
+  passthrough-verify-then-reconnect:
+    enabled: true
+    successful-verify-kick-message: '&aYour connection has been verified! Please re-connect.'
+#Powerful, highly configurable, spoofed lobby check where
+#XCord performs various checks to validate whether the user is a bot or not
+  verifyV2:
+    enabled: true
+    ignore-geyser: true
+    verify-packets: true
+    verify-brand: true
+    max-violations-for-blacklist: 3
+    max-ping: 2000
+    max-check-time: 30000
+    ignore-1-16-plus-versions: false
+    config-stagemax-wait-time: 6000
+#Powerful check, but may false on phone connections
+    block-potential-proxiesproxy-check-1:
+      enabled: false
+      leniency: 127
+#Picks up most proxies, but may false-kick super laggy players (Rare, but they can always re-join!)
+    block-potential-proxiesproxy-check-2:
+      enabled: true
+#Pre-1.8 builds are a bit more unstable, and may false more. Ignore?
+      ignore-legacy: false
+      leniency: 20
+      max-attempts: 40
+      ignore-below-this-ping: 10
+      interval: 50
+#Fall + Gravity + Collision check. Very good against almost all bots
+    advanced-lobby-check:
+      enabled: true
+      aggressive: true
+      verifying-message:
+      - '&f&lXCORD&7» &6Verifying your Minecraft client...'
+      verified-message:
+      - '&f&lXCORD&7» &aYou''ve been successfully verified!'
+      max-attempts: 2
+      test-collision: true
+      glitch-check:
+        enabled: true
+        aggressiveness: 40
+  boot-delay-seconds: 0
+  disable-checks-time: 60000
+#Kicks users that are connecting quickly, and appear to be on Linux
+  linux-check: true
+#Kicks users who chat/command too quickly after logging in
+  chat-check: true
+#Only during bot-attack, blacklist people who connect directly to your IP (Not domain)
+  dns-check: true
+  dns-check-is-strict: true
+  ip-tracking-timeout: 40000
+  chat-force-delay: 800
+#Time in milliseconds to retain a player's whitelist status (Max is 2147483647)
+  whitelist-survive-time: 172800000
+  whitelist-purge-interval: 43200000
+  whitelist-save-interval: 3600000
+  time-to-whitelist: 300000
+  time-grouping-tick: 5000
+#Time in seconds until the anti-bot deactivates after a bot attack seems over
+  anti-bot-deactivate-delay: 60
+#How many connections in a second until the anti-bot kicks on
+  anti-bot-activate-connections: 40
+  speedy-login:
+    max-logins-per-tick: 4
+    blacklist-violations: 3
+  speedy-connection:
+    max-connections-per-tick: 10
+    blacklist-violations: 3
+  unstable-check:
+    enabled: false
+    latency-threshold: 500
+    delay-kick-for-reason: false
+    blacklist-violations: 5
+  strange-name:
+    enabled: true
+    random-capital-count: 3
+    random-number-count: 3
+    blacklist-violations: 2
+  pre-p:
+    enabled: true
+    delay: 3
+    blacklist-violations: 2
+  timeout-flood:
+    enabled: false
+    time-between-timeouts: 10000
+    blacklist-violations: 3
+  linux-only-socket-check:
+    enabled: true
+    enable-during-bot-attack-only: true
+    required-connection-rate: 100
+    detect-suspicious-mss: true
+    detect-non-windows: true
+    detect-suspicious: true
+    detect-proxies-and-vps: true
+    lower-thresholds-of-bot-checks-instead-of-blacklist: false
+  name-pattern:
+    enabled: true
+    minimum-name-length: 5
+    name-history-length: 2
+    same-length-only: false
+    minimum-match-percent: 0.4
+    blacklist-violations: -1
+  anti-hang:
+    enabled: true
+    only-during-bot-attack: true
+    force-timeout-time: 2000
+  null-ping-and-ping-spam:
+    cache-ping-motd: true
+    only-cache-during-bot-attack: true
+    cache-milliseconds: 1000
+    disable-legacy-pings: false
+kernel-level-ipset-country-blocker:
+  enabled: false
+  blocked-iso-codes:
+  - CN
+  - IN
+  - RU
+  - UA
+  - HK
+  - GE
+  - ID
+#Anti-exploit, increase each by 1.5x if they false (1.16.5+ known to false)
+exploit-monitor:
+  enabled: true
+  max-packet-bytes: 46000
+  packet-bytes-per-tick-limit: 250000
+  packets-per-tick-limit: 1250
+  payload-bytes-per-tick-limit: 33000
+  max-chat-or-commands-per-tick: 50
+  exceptions-before-kick: 2
+  filter-tab-expressions: true
+  expression-filter-score: 10
+  version-allowed-threshold-multiplier:
+  - '107: 1.25'
+  - '315: 1.75'
+anti-ddos:
+  blacklist: true
+  improbable-buffer-max-violations: 10
+  during-login:
+    enabled: true
+    initial-buffer-limit-bytes: 2000
+    max-bytes-per-second: 50000
+    max-packets-per-second: 500
+#Very similar to the exploit-monitor. If you enable this and get false kicks, raise each field by 1.5x
+  during-gameplay:
+    enabled: true
+    max-bytes-per-second: 350000
+    max-packets-per-second: 2250
+    version-allowed-threshold-multiplier:
+    - '107: 1.25'
+    - '315: 1.75'
+  dos-ip-filter:
+    enabled: true
+    update-database-interval-seconds: 3600
+    use-ipset: false
+    enable-at-this-connections-per-second: 100
+general:
+#Get the license from joining XCord's discord server, and messaging the bot your PayPal email.
+  license-key: IJ7ZolaZp9V4SekhRH7O
+  f3-display-name: XCord
+  always-check-allowed-name-characters: true
+  dynamically-resolve-server-addresses: true
+  initial-timeout: 12000
+  base-tick: 1000
+  kick-timeout: 6000
+  compression-strength: -1
+  new-connection-speed-threshold: 50000
+  minimum-name-length: 2
+security-manager:
+  blacklist-reset-time: 60
+  log-blacklist: true
+  excessive-and-extra-logging: false
+  ignore-addresses-enabled: false
+  ipset-blacklisting: false
+  auto-whitelist-haproxy-addresses: true
+  auto-whitelist-swapped-ips: false
+  ignored-addresses: []
+ip-spoofer:
+  spoof-listed-user-ips: false
+  log-on-spoof: true
+  change-ip-to-this: 72.229.28.185
+  spoofed-users-case-sensitive:
+  - bob7l
+  - Notch
+login:
+  tick-length-ms: 100
+  thread-pool-size: 5
+  anti-vpn:
+    enabled: false
+    log-non-cache-detection: false
+    blocked-asn: []
+    blocked-country: []
+    save-interval: 3600
+    purge-interval: 86400
+    purge-age: 2592000
+    blacklist-on-detection: false
+    only-blacklist-on-detection-during-attack: true
+    initial-connection-checkenabled: true
+    initial-connection-checkonly-during-bot-attack: true
+    initial-connection-checkcache-only: true
+    proxycheckerio-api:
+      enabled: false
+      arguments: '&risk=1&vpn=1&asn=1&tag={name}'
+      key: ''
+    iphub-api:
+      enabled: false
+      key: ''
+    blackbox-api:
+      enabled: true
+shared-global-blacklist:
+  enabled: true
+  update-database-interval-seconds: 3600
+  use-ipset: false
+debug:
+  output-downstream-errors: false
+  debug-mode: false
+  memory-leak-monitor: false
+  passive-memory-leak-monitor: false
+#Some of these options may be incompatible with plugins such as ViaVersion, Protocolize, etc
+performance-optimizations:
+  use-merged-encoding-pipeline: false
+  ignore-scoreboards-and-disable-scoreboard-api: false
+  dont-copy-packets: false
+  use-tcp-fast-open-on-servers: true
+  use-tcp-fast-connect-on-clients: true
+  use-optimized-timeout-handler: true
+only-blacklist-packet-errors-during-attack: true
+fixes:
+  fix-1_7-kick-when-1_8-joins: false

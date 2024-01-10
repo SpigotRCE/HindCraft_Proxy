@@ -1,0 +1,21 @@
+##########################################################################
+#                                                                        #
+#					AdvancedAutoBan by James090500                       #
+#                                                                        #
+##########################################################################
+
+# The user which bans the players
+# MAX 16 CHARACTERS!
+ban_user: "Auto Ban"
+
+# The duration a player should be banned for (-1 = Permanent)
+ban_duration: -1
+
+# The amount of seconds the plugin should check for ALT accounts under the same IP
+# default: 600
+ban_period: 600
+
+# The message which should be received for an ALT joining under the same IP as a previously
+# banned account
+# default: "Evading punishment of an alt (%banned_player%)"
+ban_message: "Evading punishment of an alt (%banned_player%)"

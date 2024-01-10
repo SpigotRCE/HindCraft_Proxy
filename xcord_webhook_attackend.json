@@ -1,0 +1,30 @@
+{
+  "url": "https://discord.com/api/webhooks/1230112560353219818/ergaergaergaerg-45h4w5hw45hrtsh-rhrthrthr",
+  "content": null,
+  "username": "XCord",
+  "avatarUrl": "https://i.imgur.com/90maqB0.png",
+  "tts": false,
+  "embeds": [
+    {
+      "title": "Bot attack subsided",
+      "description": null,
+      "url": null,
+      "color": {
+        "red": 255,
+        "green": 0,
+        "blue": 0
+      },
+      "footer": null,
+      "thumbnail": null,
+      "image": null,
+      "author": null,
+      "fields": [
+        {
+          "name": "",
+          "value": "The attack appears to be over. Stats: {stat_url} Total connections: {total-connections}",
+          "inline": false
+        }
+      ]
+    }
+  ]
+}

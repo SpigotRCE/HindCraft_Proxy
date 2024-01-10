@@ -1,0 +1,46 @@
+{
+  "url": "https://discord.com/api/webhooks/1230112560353219818/ergaergaergaerg-45h4w5hw45hrtsh-rhrthrthr",
+  "content": "A DoS attack was detected, types: %attack_types%",
+  "username": "Network Monitor",
+  "avatarUrl": "https://i.imgur.com/dLL7a5m.png",
+  "tts": false,
+  "embeds": [
+    {
+      "title": null,
+      "description": "Embedded object",
+      "url": "https://i.imgur.com/dLL7a5m.png",
+      "color": {
+        "red": 255,
+        "green": 0,
+        "blue": 0
+      },
+      "footer": {
+        "text": "Footer",
+        "iconUrl": "https://i.imgur.com/dLL7a5m.png"
+      },
+      "thumbnail": {
+        "url": "https://i.imgur.com/dLL7a5m.png"
+      },
+      "image": {
+        "url": "https://i.imgur.com/dLL7a5m.png"
+      },
+      "author": {
+        "name": "Embeded Author",
+        "url": "https://i.imgur.com/dLL7a5m.png",
+        "iconUrl": "https://i.imgur.com/dLL7a5m.png"
+      },
+      "fields": [
+        {
+          "name": "Field",
+          "value": "Yup",
+          "inline": true
+        },
+        {
+          "name": "Field2",
+          "value": "Yup2",
+          "inline": false
+        }
+      ]
+    }
+  ]
+}

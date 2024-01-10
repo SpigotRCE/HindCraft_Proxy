@@ -1,0 +1,13 @@
+kick-messages:
+  slow-login: You took too long to join! (Lag?)
+  failed-connection: You failed to connect to the server, please try again in a few
+    seconds!
+  linux-check-fail: You were detected as a bot. Please wait before re-connecting...
+  speed-join-fail: You're connecting too quickly! Slow down or you'll be temporarily
+    blacklisted
+  short-name: Your name must be over 2 characters long
+  illegal-name: Your name contains illegal characters
+  vpn: VPN/Proxy's are not allowed on this server
+  high-ping: Your ping is too high to play. Try again later
+  proxy-logic-detection-verifyv2: Strange connection, appears to be proxy? Try to
+    login again if this is an error.

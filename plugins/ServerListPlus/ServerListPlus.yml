@@ -1,0 +1,76 @@
+# ServerListPlus v3.5.0 - https://git.io/slp
+# More information is available in the wiki: https://git.io/slp-wiki
+
+# This is the section where you can customize your server status ping!
+#  - Default is the section for the status used when the player name is unknown.
+#    Personalized is used if the client has already joined the server once.
+#    Use %player% as placeholder for the player's name.
+# 
+# Features:
+#  - Description (MotD): A short status message for your server, max. 2 lines.
+#  - Players:
+#    - Hover: The player hover message that is displayed if you hover the player count.
+#    - Slots: Custom player slot formatting, see http://git.io/slp-slots
+#  - Favicon:
+#    - Use multiple server icons or the player's head as favicon, see http://git.io/oMhJlg
+#    - Possible favicon sources: Files, Folders, URLs, Heads, Helms, Encoded
+# 
+#  More features are explained in the Wiki: http://git.io/slp-config
+# 
+# Usage:
+#  - Add multiple entries for random messages.
+#  - You can use formatting codes (&c, &l etc) and hex RGB color codes (&#rrggbb).
+#  - Save the file with valid UTF-8 encoding for special characters.
+#  - Available placeholders:
+#    - Player name: %player%
+#    - Player count: %online%, %max%, %online@server% %online@world%
+#    - Random online player name: %random_player%
+#    - Ban reason: %ban_reason%
+#    - Ban operator: %ban_operator%
+#    - Ban experiation date: %ban_expiration_date%, %ban_expiration_datetime%
+--- !Status
+Default:
+  Description:
+    - |-
+                 &#FF001B&lH&#FF0E19&lI&#FF1D17&lN&#FF2B16&lD&#FF3A14&lC&#FF4812&lR&#FF5710&lA&#FF650E&lF&#FF740D&lT &#FF820B&lN&#FF9109&lE&#FF9F07&lT&#FFAE05&lW&#FFBC04&lO&#FFCB02&lR&#FFD900&lK    &c&l1.8 - 1.20&r
+                 &#FF001B&lʟ&#E40233&lɪ&#C9044B&lꜰ&#AE0563&lᴇ&#94077B&lꜱ&#790993&lᴛ&#5E0BAB&lᴇ&#430DC3&lᴀ&#280EDB&lʟ   &#0D10F3&l-   &#0611F9&lꜰ&#1111EE&lꜰ&#1C10E3&lᴀ   &#2710D8&l-   &#3210CC&lʙ&#3D0FC1&lᴏ&#480FB6&lx&#530FAB&lᴘ&#5E0E9F&lᴠ&#690E94&lᴘ
+  Players:
+    Hover:
+Personalized:
+  Description:
+    - |-
+                 &#FF001B&lH&#FF0E19&lI&#FF1D17&lN&#FF2B16&lD&#FF3A14&lC&#FF4812&lR&#FF5710&lA&#FF650E&lF&#FF740D&lT &#FF820B&lN&#FF9109&lE&#FF9F07&lT&#FFAE05&lW&#FFBC04&lO&#FFCB02&lR&#FFD900&lK    &c&l1.8 - 1.20&r
+                 &#FF001B&lʟ&#E40233&lɪ&#C9044B&lꜰ&#AE0563&lᴇ&#94077B&lꜱ&#790993&lᴛ&#5E0BAB&lᴇ&#430DC3&lᴀ&#280EDB&lʟ   &#0D10F3&l-   &#0611F9&lꜰ&#1111EE&lꜰ&#1C10E3&lᴀ   &#2710D8&l-   &#3210CC&lʙ&#3D0FC1&lᴏ&#480FB6&lx&#530FAB&lᴘ&#5E0E9F&lᴠ&#690E94&lᴘ
+  Players:
+    Hover:
+
+# PlayerTracking: Enable/disable tracking of player names to their IP-Addresses.
+#   - Persistence can be disabled with the toggle in the Storage section.
+# StripRGBIfOutdated: Strip RGB color codes for outdated clients.
+#   - With this enabled you can put an old color code (e.g. &c) before RGB codes/gradients
+#     and they will be shown for outdated clients.
+# Unknown: Placeholder replacement if the real value is unknown.
+# Favicon: Options for the creation / downloading of favicons:
+#  - RecursiveFolderSearch: Also search for favicons in sub directories.
+#  - SkinSource: The URL to get the Minecraft Skins from. (%s -> player name)
+#  - ResizeStrategy: The strategy used to resize too small or too big favicons.
+#      NONE (keep them as is, will probably fail), SCALE (scale them to the correct size)
+--- !Plugin
+PlayerTracking:
+  Enabled: true
+  Storage: !JSONStorage
+    Enabled: true
+    SaveDelay: 5m
+StripRGBIfOutdated: true
+Unknown:
+  PlayerName: player
+  PlayerCount: ???
+  Date: ???
+  BanReason: some reason
+  BanOperator: somebody
+  BanExpirationDate: never
+Favicon:
+  Timeout: 10s
+  RecursiveFolderSearch: false
+  ResizeStrategy: SCALE
+
